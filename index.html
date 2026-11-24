@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continuum</title>
+    <!-- Подключаем шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500&family=Unbounded:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Подключаем стили -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Контейнер для SVG-линии -->
+    <div class="line-container">
+        <svg id="main-line" width="100%" height="100%" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <path id="line-path" d="M 0 0 C 300 200, 700 300, 1000 500" fill="none" stroke="var(--accent-magenta)" stroke-width="3"/>
+        </svg>
+    </div>
+
+    <!-- Hero секция -->
+    <main class="hero">
+        <h1 class="kinetic-title">
+            <span class="word">CON</span>
+            <span class="word">TIN</span>
+            <span class="word">UUM</span>
+        </h1>
+    </main>
+
+    <!-- Подсказка для пользователя -->
+    <div class="hint" id="hint">
+        <span class="hint-icon">↳</span> потяни линию
+    </div>
+
+    <!-- Подключаем скрипты -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+/* --- Переменные (наша палитра) --- */
+:root {
+    --bg-main: #1A1024;
+    --bg-glow: #2A1838;
+    --accent-magenta: #FF4FD8;
+    --accent-lime: #B6FF3B;
+    --text-main: #F5EFE6;
+    --text-muted: #B9A8C9;
+}
+
+/* --- Базовый сброс --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-main);
+    /* Мягкий радиальный градиент, чтобы фон не был плоским */
+    background-image: radial-gradient(circle at 50% 50%, var(--bg-glow) 0%, var(--bg-main) 70%);
+    color: var(--text-main);
+    font-family: 'Manrope', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden; /* Убираем горизонтальный скролл */
+    position: relative;
+}
+
+/* --- Линия (SVG) --- */
+.line-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1; /* Линия на заднем плане */
+    pointer-events: none; /* Чтобы не мешала кликам */
+}
+
+#line-path {
+    opacity: 0.3; /* Приглушаем линию на фоне */
+    transition: opacity 0.5s ease;
+}
+
+/* --- Hero секция и типографика --- */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    z-index: 2; /* Текст поверх линии */
+}
+
+.kinetic-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(4rem, 18vw, 12rem); /* Огромный адаптивный шрифт */
+    font-weight: 900;
+    line-height: 0.85;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    letter-spacing: -0.03em;
+}
+
+/* Эффекты для слов */
+.word {
+    display: block;
+    transition: transform 0.3s ease, color 0.3s ease;
+    cursor: default;
+}
+
+/* При наведении/тапе слово немного сдвигается и меняет цвет на мадженту */
+.word:hover {
+    color: var(--accent-magenta);
+    transform: translateX(10px);
+}
+
+/* Делаем среднее слово сдвинутым вправо для динамики */
+.word:nth-child(2) {
+    margin-left: 1.5rem;
+    color: var(--text-muted);
+}
+
+/* --- Подсказка (ведение за руку) --- */
+.hint {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--accent-lime);
+    background: rgba(26, 16, 36, 0.8);
+    padding: 10px 20px;
+    border: 1px solid rgba(182, 255, 59, 0.3);
+    border-radius: 50px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(5px);
+    /* Мягкая пульсация */
+    animation: pulse 2s infinite;
+}
+
+.hint-icon {
+    font-size: 1.2rem;
+    animation: bounce 1s infinite alternate;
+}
+
+/* --- Анимации --- */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(182, 255, 59, 0.2); }
+    70% { box-shadow: 0 0 0 10px rgba(182, 255, 59, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(182, 255, 59, 0); }
+}
+
+@keyframes bounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
+}
